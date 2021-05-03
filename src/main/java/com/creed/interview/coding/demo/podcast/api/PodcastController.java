@@ -24,8 +24,16 @@ public class PodcastController {
     public PodcastController(PodCastService podCastService) {
         this.podCastService = podCastService;
     }
+    /***
+     * @param genreId
+     * @param page
+     *
+     * @return List<Topic> the list of topics
+     *
+     *  Making the request to get the best podcasts filter by the given genre id and page number
+     *
+     */
 
-    //Calling the web service
     @GetMapping("/best_podcasts")
     public List<Topic> getPodcast(@RequestParam(value = "genre_id", required = false) Integer genreId,
     @RequestParam(required = false) Integer page){

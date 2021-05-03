@@ -11,6 +11,8 @@ import java.util.List;
 
 @Repository
 public interface PodcastRepository extends JpaRepository<Podcast, String> {
+
+    //Getting the lis of podcasts that contains the list of given genreIds
     List<Podcast> findByGenreIdsIn(List<Integer> genreIds);
 
 }

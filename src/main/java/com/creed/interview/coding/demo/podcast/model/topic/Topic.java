@@ -18,7 +18,6 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "topic")
 public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,7 +32,6 @@ public class Topic {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, targetEntity = Podcast.class)
     @JoinTable(name = "Topic_Podcast", joinColumns = @JoinColumn(name = "Topic_id"), inverseJoinColumns = @JoinColumn(name = "Podcast_id"))
     @JsonProperty("podcasts")
-    @Where(clause = "")
     private List<Podcast> podcasts;
 
     private int total;
