@@ -2,6 +2,7 @@ package com.creed.interview.coding.demo.podcast.model.topic;
 
 import com.creed.interview.coding.demo.podcast.model.podcast.Podcast;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,6 +33,7 @@ public class Topic {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, targetEntity = Podcast.class)
     @JoinTable(name = "Topic_Podcast", joinColumns = @JoinColumn(name = "Topic_id"), inverseJoinColumns = @JoinColumn(name = "Podcast_id"))
     @JsonProperty("podcasts")
+    @Where(clause = "")
     private List<Podcast> podcasts;
 
     private int total;
