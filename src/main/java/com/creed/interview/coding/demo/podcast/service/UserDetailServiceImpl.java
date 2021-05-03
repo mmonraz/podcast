@@ -18,9 +18,18 @@ public class UserDetailServiceImpl implements UserDetailsService {
     private UserRepository userRepository;
 
     @Override
+    /**
+     * @param userName
+     * @return UserDetails - The details from the USER (username, password roles etc)
+     *
+     * This method is provided by Spring Security to load the user by username
+     */
+
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        //Getting the user from the database
         Optional<User> user = userRepository.findByUserName(userName);
 
+        //If we are not able to find any user matching the provided userName we are returning and exception
         user.orElseThrow(() ->new UsernameNotFoundException(userName + "NOT FOUND"));
         return user.map(UserDetailsImpl::new).get();
     }

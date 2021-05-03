@@ -41,7 +41,7 @@ public class Podcast {
 
     @Column(name = "explicit_content")
     @JsonProperty("explicit_content")
-    private String explicitContent;
+    private boolean explicitContent;
 
     @Column(name = "description", columnDefinition = "LONGTEXT")
     private String description;
@@ -72,8 +72,6 @@ public class Podcast {
     private String email;
     private String type;
 
-   // @ElementCollection
-    //@CollectionTable(name = "podcast_lookingFor", joinColumns = @JoinColumn(name = "podcast_id"))
     @Column(name = "looking_for")
     @JsonProperty("looking_for")
     private LookingFor lookingFor;
@@ -85,7 +83,7 @@ public class Podcast {
     private List<Integer> genreIds = new ArrayList<>();
 
     public Podcast(String id, String title, String publisher, String image, String thumbnail, String listennotesUrl,
-                   String totalEpisodes, String explicitContent, String description, Integer itunesId, String rss,
+                   String totalEpisodes, boolean explicitContent, String description, Integer itunesId, String rss,
                    Long latestPubDateMs, Long earliestPubDateMs, String language, String country, String website,
                    Extra extra, boolean isClaimed, String email, String type, LookingFor lookingFor) {
         this.id = id;
@@ -183,11 +181,11 @@ public class Podcast {
         this.totalEpisodes = totalEpisodes;
     }
 
-    public String getExplicitContent() {
+    public boolean getExplicitContent() {
         return explicitContent;
     }
 
-    public void setExplicitContent(String explicitContent) {
+    public void setExplicitContent(boolean explicitContent) {
         this.explicitContent = explicitContent;
     }
 
@@ -293,5 +291,17 @@ public class Podcast {
 
     public void setLookingFor(LookingFor lookingFor) {
         this.lookingFor = lookingFor;
+    }
+
+    public boolean isExplicitContent() {
+        return explicitContent;
+    }
+
+    public List<Integer> getGenreIds() {
+        return genreIds;
+    }
+
+    public void setGenreIds(List<Integer> genreIds) {
+        this.genreIds = genreIds;
     }
 }

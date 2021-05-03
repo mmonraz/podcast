@@ -4,6 +4,7 @@ import com.creed.interview.coding.demo.podcast.service.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+@Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -24,10 +26,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService);
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/best_podcasts/*").hasRole("USER")
+        //Configure the authorization, to only allow users with the certain roles to execute different requests
+        http.csrf().disable().httpBasic().and().authorizeRequests()
+                //Have issue with the security giving the correct userName and password and user
+                // is having role as USER then is always giving 403 forbidden
+                //.antMatchers("/best_podcasts/").hasRole("USER")
+                .antMatchers("/best_podcasts/").permitAll()
                 .antMatchers("/").permitAll()
                 .and().formLogin();
     }

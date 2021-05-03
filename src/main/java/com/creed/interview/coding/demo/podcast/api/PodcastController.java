@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @RestController
 public class PodcastController {
     PodCastService podCastService;
@@ -21,9 +26,20 @@ public class PodcastController {
     }
 
     //Calling the web service
-    @GetMapping("/best_podcasts/{id}")
-    public Topic getPodcast(@PathVariable("id") Integer id, @RequestParam(value = "genre_id", required = false) Integer genreId,
-    @RequestParam(required = false) Integer page, @RequestParam(required = false) String region, @RequestParam(value = "safe_mode", required = false) Integer safeMode){
-        return podCastService.getTopicById(id);
+    @GetMapping("/best_podcasts")
+    public List<Topic> getPodcast(@RequestParam(value = "genre_id", required = false) Integer genreId,
+    @RequestParam(required = false) Integer page){
+
+        /*
+            Below code was intended when if we were allowing to send a list of genre_ids as comma separated value
+            instead of a single value
+
+            List<Integer> genreIdList = Stream.of(genreIds.split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+          */
+
+
+        return podCastService.getTopicPodCasts(genreId, page);
     }
 }

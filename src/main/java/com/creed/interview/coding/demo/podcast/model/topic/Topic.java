@@ -86,6 +86,14 @@ public class Topic {
         this.parentId = parentId;
     }
 
+    public List<Podcast> getPodcasts() {
+        return podcasts;
+    }
+
+    public void setPodcasts(List<Podcast> podcasts) {
+        this.podcasts = podcasts;
+    }
+
     public int getTotal() {
         return total;
     }

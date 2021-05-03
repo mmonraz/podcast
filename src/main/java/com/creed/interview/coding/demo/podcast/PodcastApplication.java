@@ -3,6 +3,7 @@ package com.creed.interview.coding.demo.podcast;
 import com.creed.interview.coding.demo.podcast.model.security.User;
 import com.creed.interview.coding.demo.podcast.model.topic.Topic;
 import com.creed.interview.coding.demo.podcast.repository.PodcastRepository;
+import com.creed.interview.coding.demo.podcast.repository.TopicRepository;
 import com.creed.interview.coding.demo.podcast.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import java.util.stream.Collectors;
 @EnableJpaRepositories(basePackageClasses = UserRepository.class)
 public class PodcastApplication implements  CommandLineRunner{
 	@Autowired
-	PodcastRepository podcastRepository;
+	TopicRepository topicRepository;
 
 	@Autowired
 	UserRepository userRepository;
@@ -34,20 +35,23 @@ public class PodcastApplication implements  CommandLineRunner{
 
 	@Override
 	public void run(String... args){
-		// read JSON and load json
+		// Initialize Jackson mapper
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
+			//Reading the file from the resources folder
 			InputStream inputStream = getClass().getClassLoader().getResourceAsStream("\\sample-api-response.json");
 
+			//Getting the JSON string from the inputStream
 			String json = new BufferedReader(
 					new InputStreamReader(inputStream)).lines().collect(Collectors.joining());
+
 			Topic topic = mapper.readValue(json, Topic.class);
 
-			Topic topicDB = podcastRepository.findTopicById(1);
+			List<Topic> topicDB = topicRepository.findAllByPageNumber(1);
 
-			if(topicDB == null){
-				podcastRepository.save(topic);
+			if(topicDB.isEmpty()){
+				topicRepository.save(topic);
 			}
 
 			List<User> userList = userRepository.findAll();
@@ -85,8 +89,6 @@ public class PodcastApplication implements  CommandLineRunner{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		//podcastRepository.save(topic);
 	}
 
 }

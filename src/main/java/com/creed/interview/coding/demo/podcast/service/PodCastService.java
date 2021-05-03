@@ -6,7 +6,7 @@ import com.creed.interview.coding.demo.podcast.model.topic.Topic;
 import java.util.List;
 
 public interface PodCastService {
-    Topic getTopicPodCasts(Integer id, Integer genreId, Integer page, String region, Integer safeMode);
+    List<Topic> getTopicPodCasts(Integer genreId, Integer page);
 
-    Topic getTopicById(Integer id);
+    List<Topic> getTopicByPageNumber(Integer page);
 }
