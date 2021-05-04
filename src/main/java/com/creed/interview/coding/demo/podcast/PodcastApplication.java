@@ -61,7 +61,7 @@ public class PodcastApplication implements  CommandLineRunner{
 
 				user1.setUserName("test");
 				user1.setPassword("password");
-				user1.setRoles("USER");
+				user1.setRoles("ROLE_USER");
 				user1.setActive(true);
 
 				userRepository.save(user1);
@@ -70,7 +70,7 @@ public class PodcastApplication implements  CommandLineRunner{
 
 				user2.setUserName("admin");
 				user2.setPassword("admin");
-				user2.setRoles("USER, ADMIN");
+				user2.setRoles("ROLE_USER, ROLE_ADMIN");
 				user2.setActive(true);
 
 				userRepository.save(user2);
@@ -79,7 +79,7 @@ public class PodcastApplication implements  CommandLineRunner{
 
 				user3.setUserName("support");
 				user3.setPassword("support");
-				user3.setRoles("SUPPORT");
+				user3.setRoles("ROLE_SUPPORT");
 				user3.setActive(true);
 
 				userRepository.save(user3);

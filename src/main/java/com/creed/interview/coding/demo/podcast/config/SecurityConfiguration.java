@@ -1,6 +1,5 @@
 package com.creed.interview.coding.demo.podcast.config;
 
-import com.creed.interview.coding.demo.podcast.service.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -30,11 +29,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //Configure the authorization, to only allow users with the certain roles to execute different requests
-        http.csrf().disable().httpBasic().and().authorizeRequests()
-                //Have issue with the security giving the correct userName and password and user
-                // is having role as USER then is always giving 403 forbidden
-                //.antMatchers("/best_podcasts/").hasRole("USER")
-                .antMatchers("/best_podcasts/").permitAll()
+        http.authorizeRequests()
+                //Check if the role is USER to allow the user to trigger the service
+                .antMatchers("/best_podcasts").hasRole("USER")
+                //.antMatchers("/best_podcasts/").permitAll()
                 .antMatchers("/").permitAll()
                 .and().formLogin();
     }
