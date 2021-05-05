@@ -20,7 +20,7 @@ spring.datasource.url = jdbc:mysql://localhost:3306/podcast
 If all the previous step where done correctly you just need to run the application by PodcastApplication class main method
 
 The application will create all the required database tables and will populated this tables with the information from the json file
-and will also populated the users for the security (which is for now is not working 100%)
+and will also populated the users for the security
 
 
 
