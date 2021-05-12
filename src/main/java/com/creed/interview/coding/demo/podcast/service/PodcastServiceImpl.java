@@ -6,6 +6,7 @@ import com.creed.interview.coding.demo.podcast.repository.PodcastRepository;
 import com.creed.interview.coding.demo.podcast.repository.TopicRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.NumberUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,17 +33,23 @@ public class PodcastServiceImpl implements  PodCastService{
          We need to check each topic and filter their corresponding podcast list by comma separated list of
          genre ids
          */
-        for(Topic topic: topicList){
-            List<Podcast> podcastList = new ArrayList<>();
-            for(Podcast podcast: topic.getPodcasts()){
-                if(podcast.getGenreIds().contains(genreId)){
-                    podcastList.add(podcast);
+
+        //If the genre_id parameter is not passed then return all the podcast for all the topics
+        //for the given page number
+        if(genreId != null){
+            for(Topic topic: topicList){
+                List<Podcast> podcastList = new ArrayList<>();
+                for(Podcast podcast: topic.getPodcasts()){
+                    if(podcast.getGenreIds().contains(genreId)){
+                        podcastList.add(podcast);
+                    }
                 }
+
+                topic.setPodcasts(podcastList);
+
             }
-
-            topic.setPodcasts(podcastList);
-
         }
+
 
         return topicList;
     }
