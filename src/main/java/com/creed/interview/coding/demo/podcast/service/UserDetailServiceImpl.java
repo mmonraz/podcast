@@ -3,6 +3,7 @@ package com.creed.interview.coding.demo.podcast.service;
 import com.creed.interview.coding.demo.podcast.model.security.User;
 import com.creed.interview.coding.demo.podcast.model.security.UserDetailsImpl;
 import com.creed.interview.coding.demo.podcast.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,10 +13,10 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class UserDetailServiceImpl implements UserDetailsService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     /**

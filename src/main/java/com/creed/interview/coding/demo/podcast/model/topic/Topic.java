@@ -2,6 +2,8 @@ package com.creed.interview.coding.demo.podcast.model.topic;
 
 import com.creed.interview.coding.demo.podcast.model.podcast.Podcast;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.CascadeType;
@@ -18,6 +20,8 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -59,92 +63,4 @@ public class Topic {
     @Column(name = "listennotes_url")
     @JsonProperty("listennotes_url")
     private String listennotesUrl;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(int parentId) {
-        this.parentId = parentId;
-    }
-
-    public List<Podcast> getPodcasts() {
-        return podcasts;
-    }
-
-    public void setPodcasts(List<Podcast> podcasts) {
-        this.podcasts = podcasts;
-    }
-
-    public int getTotal() {
-        return total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
-    }
-
-    public boolean isHasNext() {
-        return hasNext;
-    }
-
-    public void setHasNext(boolean hasNext) {
-        this.hasNext = hasNext;
-    }
-
-    public boolean isHasPrevious() {
-        return hasPrevious;
-    }
-
-    public void setHasPrevious(boolean hasPrevious) {
-        this.hasPrevious = hasPrevious;
-    }
-
-    public int getPageNumber() {
-        return pageNumber;
-    }
-
-    public void setPageNumber(int pageNumber) {
-        this.pageNumber = pageNumber;
-    }
-
-    public int getPreviousPageNumber() {
-        return previousPageNumber;
-    }
-
-    public void setPreviousPageNumber(int previousPageNumber) {
-        this.previousPageNumber = previousPageNumber;
-    }
-
-    public int getNextPageNumber() {
-        return nextPageNumber;
-    }
-
-    public void setNextPageNumber(int nextPageNumber) {
-        this.nextPageNumber = nextPageNumber;
-    }
-
-    public String getListennotesUrl() {
-        return listennotesUrl;
-    }
-
-    public void setListennotesUrl(String listennotesUrl) {
-        this.listennotesUrl = listennotesUrl;
-    }
 }

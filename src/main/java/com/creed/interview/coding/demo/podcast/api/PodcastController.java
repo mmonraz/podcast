@@ -4,6 +4,7 @@ import com.creed.interview.coding.demo.podcast.model.podcast.Podcast;
 import com.creed.interview.coding.demo.podcast.model.topic.Topic;
 import com.creed.interview.coding.demo.podcast.service.PodCastService;
 import com.sun.istack.Nullable;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,14 +17,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RestController
+@RequiredArgsConstructor
 public class PodcastController {
-    PodCastService podCastService;
+    private final PodCastService podCastService;
 
-    //Injecting the service using constructor injection - This is the best injection
-    @Autowired
-    public PodcastController(PodCastService podCastService) {
-        this.podCastService = podCastService;
-    }
     /***
      * @param genreId
      * @param page

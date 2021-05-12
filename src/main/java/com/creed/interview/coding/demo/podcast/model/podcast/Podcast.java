@@ -3,6 +3,10 @@ package com.creed.interview.coding.demo.podcast.model.podcast;
 import com.creed.interview.coding.demo.podcast.model.extra.Extra;
 import com.creed.interview.coding.demo.podcast.model.lookingFor.LookingFor;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
@@ -23,6 +27,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "podcast", uniqueConstraints = { @UniqueConstraint(columnNames = { "id"})})
+@Data
 public class Podcast {
     @Id
     private String id;

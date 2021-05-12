@@ -4,20 +4,19 @@ import com.creed.interview.coding.demo.podcast.model.podcast.Podcast;
 import com.creed.interview.coding.demo.podcast.model.topic.Topic;
 import com.creed.interview.coding.demo.podcast.repository.PodcastRepository;
 import com.creed.interview.coding.demo.podcast.repository.TopicRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PodcastServiceImpl implements  PodCastService{
 
-    @Autowired
-    private PodcastRepository podcastRepository;
+    private final PodcastRepository podcastRepository;
 
-    @Autowired
-    private TopicRepository topicRepository;
+    private final TopicRepository topicRepository;
 
     @Override
     public List<Topic> getTopicPodCasts(Integer genreId, Integer page) {
