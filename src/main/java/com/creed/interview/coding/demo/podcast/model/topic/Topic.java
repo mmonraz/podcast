@@ -2,7 +2,9 @@ package com.creed.interview.coding.demo.podcast.model.topic;
 
 import com.creed.interview.coding.demo.podcast.model.podcast.Podcast;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
 
